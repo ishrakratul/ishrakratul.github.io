@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Ishrak Jahan Ratul">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ishrak Jahan Ratul – Ph.D. Candidate, ML Systems, HPC and GPU Computing</title>
+<meta name="description" content="Ishrak Jahan Ratul, Ph.D. candidate (ABD) in Computer Science at Texas State University. Machine learning systems, inference optimization, parallel and GPU computing, high-performance computing and real-time systems. IEEE RTSS 2026.">
+<meta property="og:title" content="Ishrak Jahan Ratul – ML Systems, HPC and GPU Computing Researcher">
+<meta property="og:description" content="Ph.D. candidate at Texas State University. IEEE RTSS 2026. Inference optimization, IDK classifier cascades, GPU computing, real-time systems.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2326363D'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' fill='%23F5F3EE' text-anchor='middle'%3EIR%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="https://ishrakratul.github.io/assets/img/og.png">
+<meta property="og:url" content="https://ishrakratul.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F3EE; --panel:#E7E8E4; --ink:#22292C; --sub:#5D6262; --faint:#5F6669; --rule:#DDE0DD;
+  --teal:#4C6C72; --teal-d:#38555A; --teal-t:#DFE1DE; --amber:#C98B3E; --amber-t:#EEE2D2;
+  --serif:'Newsreader',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --max:1140px; --side:220px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--teal-d);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:40;background:rgba(245,243,238,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:24px}
+.brand{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.menu{display:flex;gap:2px;list-style:none}
+.menu a{display:block;padding:6px 11px;color:var(--sub);font-size:.92rem;border-radius:6px}
+.menu a:hover{color:var(--ink);background:var(--panel);text-decoration:none}
+.menu a.active{color:var(--teal-d);background:var(--teal-t)}
+.cv{background:var(--ink);color:#fff;padding:8px 15px;border-radius:6px;font-size:.9rem;font-weight:500;white-space:nowrap}
+.cv:hover{background:var(--teal);text-decoration:none}
+.burger{display:none;background:none;border:1px solid var(--rule);border-radius:6px;width:40px;height:36px;font-size:1.1rem;color:var(--ink);cursor:pointer}
+
+/* HERO */
+.hero{padding:64px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;color:var(--teal-d);margin-bottom:20px}
+.avail i{width:8px;height:8px;border-radius:50%;background:#1E9E62;box-shadow:0 0 0 4px rgba(30,158,98,.15)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.2vw,4rem);line-height:1.04;letter-spacing:-.015em}
+.hero .who{font-size:1.15rem;color:var(--sub);margin:14px 0 20px}
+.hero .who strong{color:var(--ink);font-weight:500}
+.hero .pitch{font-size:1.06rem;max-width:34em;margin-bottom:28px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.b{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:6px;border:1px solid var(--rule);background:#fff;color:var(--ink);font-size:.93rem;font-weight:500}
+.b:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.b.main{background:var(--teal);border-color:var(--teal);color:#fff}
+.b.main:hover{background:var(--teal-d);color:#fff}
+.b svg{width:16px;height:16px}
+
+/* CASCADE DEMO — the one memorable element */
+.demo{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:22px 22px 18px;box-shadow:0 18px 40px -24px rgba(34,41,44,.25)}
+.demo-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
+.demo-head b{font-family:var(--serif);font-weight:500;font-size:1.15rem}
+.demo-head span{font-size:.82rem;color:var(--faint)}
+.track{position:relative;height:150px}
+.lane{position:absolute;left:0;right:0;top:38px;height:2px;background:repeating-linear-gradient(90deg,var(--rule) 0 6px,transparent 6px 11px)}
+.stg{position:absolute;top:14px;width:22%;height:50px;transform:translateX(-50%);border:1.5px solid var(--ink);border-radius:7px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.stg b{font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1}
+.stg small{font-size:.7rem;color:var(--faint)}
+.stg.flash{border-color:var(--amber);box-shadow:0 0 0 4px var(--amber-t)}
+.bin{position:absolute;top:100px;width:22%;transform:translateX(-50%);text-align:center;font-size:.78rem;color:var(--sub)}
+.bin b{display:block;font-size:1.05rem;color:var(--ink);font-weight:600}
+.dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--teal);top:34px;left:0;z-index:3}
+.dot.done{background:var(--amber)}
+.demo p{font-size:.88rem;color:var(--sub);margin-top:8px;border-top:1px solid var(--rule);padding-top:12px}
+
+/* FACT STRIP */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.fact{padding:22px 22px 20px 0}
+.fact+.fact{padding-left:22px;border-left:1px solid var(--rule)}
+.fact b{display:block;font-family:var(--serif);font-weight:500;font-size:1.65rem;line-height:1.1;margin-bottom:4px}
+.fact span{font-size:.88rem;color:var(--sub)}
+.fact.lead b{color:var(--teal)}
+
+/* SECTIONS */
+.sec{padding:72px 0;border-bottom:1px solid var(--rule)}
+.sec.alt{background:var(--panel)}
+.row{display:grid;grid-template-columns:var(--side) 1fr;gap:48px}
+.side h2{font-family:var(--serif);font-weight:500;font-size:1.9rem;line-height:1.15;position:sticky;top:96px}
+.side p{font-size:.9rem;color:var(--faint);margin-top:8px;position:sticky;top:140px}
+h3{font-size:1.06rem;font-weight:600;line-height:1.4}
+.lead-p{font-family:var(--serif);font-size:1.3rem;line-height:1.5;margin-bottom:18px}
+.body p{margin-bottom:14px;max-width:44em;color:#3B4143}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:28px;padding-top:24px;border-top:1px solid var(--rule)}
+.quick h4{font-size:.9rem;font-weight:600;color:var(--teal);margin-bottom:6px}
+.quick p{font-size:.93rem;color:var(--sub);margin:0}
+
+/* RESEARCH */
+.feat{border:1px solid var(--rule);border-left:4px solid var(--teal);background:#fff;border-radius:0 8px 8px 0;padding:26px 28px;margin-bottom:8px}
+.badge{display:inline-block;font-size:.8rem;font-weight:500;padding:3px 10px;border-radius:4px;background:var(--teal-t);color:var(--teal-d);margin-bottom:10px}
+.badge.amber{background:var(--amber-t);color:#6F4C22}
+.badge.plain{background:var(--panel);color:var(--sub)}
+.feat h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;margin-bottom:8px}
+.feat p{color:var(--sub);max-width:46em}
+.items{list-style:none}
+.item{display:grid;grid-template-columns:1fr 170px;gap:28px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.item:last-child{border-bottom:0}
+.item p{font-size:.95rem;color:var(--sub);margin-top:4px}
+.item .where{font-size:.85rem;color:var(--faint);margin-top:6px}
+.num{text-align:right}
+.num b{display:block;font-family:var(--serif);font-weight:500;font-size:1.8rem;line-height:1;color:var(--teal)}
+.num span{font-size:.8rem;color:var(--faint)}
+
+/* PUBLICATIONS */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{font:500 .86rem var(--sans);padding:6px 13px;border-radius:20px;border:1px solid var(--rule);background:#fff;color:var(--sub);cursor:pointer}
+.filters button:hover{border-color:var(--teal);color:var(--teal)}
+.filters button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.pub{display:grid;grid-template-columns:56px 1fr auto;gap:18px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.pub:last-child{border:0}
+.pub .yr{font-family:var(--serif);font-size:1.05rem;color:var(--faint)}
+.pub h4{font-weight:500;font-size:1rem;line-height:1.45}
+.pub h4 a{color:var(--ink)}
+.pub h4 a:hover{color:var(--teal)}
+.pub .au{font-size:.88rem;color:var(--sub);margin-top:2px}
+.pub .au b{color:var(--ink);font-weight:600}
+.pub .ve{font-size:.86rem;color:var(--faint);font-style:italic}
+.pub .kind{font-size:.76rem;padding:2px 9px;border-radius:4px;background:var(--panel);color:var(--sub);white-space:nowrap;height:fit-content}
+.pub .kind.hot{background:var(--teal);color:#fff}
+.pub.star h4{font-family:var(--serif);font-size:1.15rem}
+.talks{margin-top:34px}
+.talks h3{margin-bottom:6px}
+.talks li{list-style:none;padding:10px 0;border-bottom:1px solid var(--rule);font-size:.95rem;color:var(--sub)}
+.talks li:last-child{border:0}
+.talks li b{color:var(--ink);font-weight:500}
+
+/* EXPERIENCE TIMELINE */
+.tl{position:relative;padding-left:28px}
+.tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+.job{position:relative;padding-bottom:34px}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-28px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--faint)}
+.job.now::before{background:var(--teal);border-color:var(--teal)}
+.job .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.job .when{font-size:.88rem;color:var(--faint);white-space:nowrap}
+.job .org{color:var(--teal-d);font-size:.95rem;margin:1px 0 10px}
+.job ul{padding-left:18px}
+.job li{font-size:.95rem;color:#3B4143;margin-bottom:6px}
+.job li::marker{color:var(--faint)}
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.edu div{border-top:2px solid var(--ink);padding-top:14px}
+.edu p{font-size:.93rem;color:var(--sub);margin-top:4px}
+.edu .st{font-size:.85rem;color:var(--teal-d);font-weight:500}
+
+/* SKILLS */
+.dl{display:grid;grid-template-columns:200px 1fr;border-top:1px solid var(--rule)}
+.dl dt,.dl dd{padding:14px 0;border-bottom:1px solid var(--rule)}
+.dl dt{font-weight:600;font-size:.95rem}
+.dl dd{color:var(--sub);font-size:.95rem}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 28px;margin-top:40px}
+.projects h3{font-size:.98rem;margin-bottom:3px}
+.projects p{font-size:.88rem;color:var(--sub)}
+.sub-h{font-family:var(--serif);font-weight:500;font-size:1.3rem;margin-top:44px}
+
+/* SERVICE */
+.svc{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:36px}
+.svc h3{margin-bottom:10px}
+.big{font-family:var(--serif);font-weight:500;font-size:3rem;line-height:1;color:var(--teal)}
+.jl{list-style:none;margin-top:14px;padding-right:8px;border-top:1px solid var(--rule)}
+.jl li{display:flex;justify-content:space-between;gap:12px;font-size:.87rem;padding:7px 0;border-bottom:1px solid var(--rule);color:var(--sub)}
+.jl li span{color:var(--ink);font-weight:600}
+.plain{list-style:none}
+.plain li{padding:11px 0;border-bottom:1px solid var(--rule);font-size:.92rem;color:var(--sub)}
+.plain li b{display:block;color:var(--ink);font-weight:500}
+
+/* PHOTOGRAPHY */
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:260px;gap:10px;margin-top:26px}
+.shot.tall{grid-row:span 2}
+.shot{position:relative;overflow:hidden;border-radius:6px;background:#E4E6E2;cursor:zoom-in;margin:0}
+
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.shot:hover img{transform:scale(1.03)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(34,41,44,.7));color:#fff;font-size:.82rem}
+.shot.missing{cursor:default;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--faint);font-size:.82rem;border:1px dashed #C2CAC9}
+.places{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:26px}
+.places b{display:block;font-weight:600;font-size:.95rem}
+.places span{font-size:.88rem;color:var(--sub)}
+.lb{position:fixed;inset:0;background:rgba(34,41,44,.94);z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px}
+.lb.open{display:flex}
+.lb img{max-height:80vh;max-width:92vw;border-radius:4px}
+.lb .cap{color:#fff;margin-top:12px;font-size:.92rem}
+.lb button{position:absolute;background:#fff;border:0;border-radius:50%;width:42px;height:42px;font-size:1.05rem;cursor:pointer;color:var(--ink)}
+.lb .x{top:20px;right:20px}.lb .pv{left:20px;top:50%}.lb .nx{right:20px;top:50%}
+
+/* CONTACT */
+.contact{background:var(--teal-t);border-bottom:0}
+.contact h2{font-family:var(--serif);font-weight:500;font-size:2.4rem;line-height:1.15}
+.contact p{color:var(--sub);margin:12px 0 22px;max-width:36em}
+.mail{font-family:var(--serif);font-size:1.6rem;color:var(--teal-d)}
+.contact .acts{margin-top:22px}
+footer{padding:22px 0;font-size:.86rem;color:var(--faint);background:var(--teal-t);border-top:1px solid #D0D5D3}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+
+details{margin-top:6px}
+details summary{cursor:pointer;font-size:.84rem;color:var(--teal-d);width:fit-content;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+ ";font-weight:600}
+details[open] summary::before{content:"– "}
+details p{font-size:.9rem;color:var(--sub);margin-top:6px;max-width:46em;padding-left:12px;border-left:2px solid var(--teal-t)}
+.news{list-style:none;border-top:1px solid var(--rule)}
+.news li{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:13px 0;border-bottom:1px solid var(--rule);font-size:.96rem}
+.news time{color:var(--faint);font-size:.9rem}
+.news li.key span{font-weight:500}
+.ways{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px 36px}
+.ways h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;margin-bottom:4px}
+.ways p{font-size:.94rem;color:var(--sub)}
+.cur{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.cur>div{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:18px 20px}
+.cur p{font-size:.92rem;color:var(--sub);margin-top:4px}
+@media(max-width:620px){.ways,.cur{grid-template-columns:1fr}.news li{grid-template-columns:1fr;gap:2px}}
+@media(max-width:1000px){
+  .menu{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--paper);padding:10px 20px;border-bottom:1px solid var(--rule)}
+  .menu.open{display:flex}
+  .burger{display:block}
+  .hero-grid,.row{grid-template-columns:1fr}
+  .row{gap:22px}
+  .side h2,.side p{position:static}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:nth-child(3){padding-left:0;border-left:0}
+  .fact:nth-child(n+3){border-top:1px solid var(--rule)}
+  .svc,.projects{grid-template-columns:1fr 1fr}
+  .places{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .cv{display:none}
+  .quick,.svc,.projects,.edu{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr}.num{text-align:left}
+  .pub{grid-template-columns:1fr;gap:2px}.pub .kind{justify-self:start;margin-top:6px}
+  .dl{grid-template-columns:1fr}.dl dt{border-bottom:0;padding-bottom:2px}.dl dd{padding-top:0}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:220px}.shot.tall{grid-row:auto}.shot:last-child{grid-column:1/-1}
+  .sec{padding:52px 0}
+}
+
+/* ===== POLISH LAYER ===== */
+:root{--indigo:#26363D;--indigo-t:#E0E0DC;--grad:linear-gradient(120deg,#4C6C72 0%,#B0634A 48%,#26363D 100%);--shadow:0 1px 2px rgba(34,41,44,.04),0 10px 30px -12px rgba(34,41,44,.14)}
+::selection{background:#CBD1CF}
+.nav::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--grad)}
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(900px 420px at 8% -10%,rgba(76,108,114,.10),transparent 60%),
+  radial-gradient(700px 380px at 95% 0%,rgba(38,54,61,.10),transparent 60%),var(--paper)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(34,41,44,.07) 1px,transparent 1px);background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 70%);mask-image:linear-gradient(180deg,#000 0%,transparent 70%)}
+.hero .wrap{position:relative;z-index:1}
+.avail{background:#fff;border:1px solid #D0D5D3;padding:5px 12px 5px 10px;border-radius:20px;box-shadow:var(--shadow)}
+.hero h1{background:linear-gradient(120deg,#22292C 30%,#26363D);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:4px}
+.b{box-shadow:0 1px 2px rgba(34,41,44,.05);transition:border-color .15s,color .15s,background .15s}
+.b.main,.cv{background:var(--grad);border:0}
+.b.main:hover,.cv:hover{background:var(--grad);filter:brightness(1.08)}
+.demo{border:1px solid #D3D8D5;box-shadow:0 24px 50px -28px rgba(38,54,61,.28)}
+.demo-head{margin:-22px -22px 16px;padding:14px 22px;background:linear-gradient(120deg,#E7E8E4,#E7E6E2);border-bottom:1px solid #D7DBD8;border-radius:10px 10px 0 0}
+.stg{border-color:#26363D}
+.bin b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.25rem}
+.facts{background:#fff;border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.fact{padding:22px 24px!important;border-top:3px solid var(--teal)}
+.fact:nth-child(2){border-top-color:#B0634A}.fact:nth-child(3){border-top-color:var(--indigo)}.fact:nth-child(4){border-top-color:var(--amber)}
+.fact b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fact.lead b{color:transparent}
+.hero{padding-bottom:64px}
+.side h2::after{content:"";display:block;width:40px;height:3px;border-radius:2px;background:var(--grad);margin-top:12px}
+.contact .side h2::after{background:#fff}
+.sec.alt{background:linear-gradient(180deg,#E9EAE5,#EBEAE5)}
+.lead-p{color:#22292C}
+.quick>div{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:16px 18px;border-top:3px solid var(--teal)}
+.quick>div:nth-child(2){border-top-color:var(--indigo)}.quick>div:nth-child(3){border-top-color:var(--amber)}
+.quick{border-top:0;padding-top:0;gap:16px}
+.quick h4{color:var(--ink)}
+.news li{grid-template-columns:100px 1fr;align-items:baseline}
+.news time{display:inline-block;width:fit-content;font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:12px;background:var(--panel);color:var(--sub)}
+.news li.key time,.news li:nth-child(-n+6) time{background:var(--teal-t);color:var(--teal-d)}
+.news li.key{background:linear-gradient(90deg,rgba(76,108,114,.06),transparent 70%)}
+.ways>div{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:20px 22px;box-shadow:var(--shadow);position:relative}
+.ways>div::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:0 3px 3px 0;background:var(--teal)}
+.ways>div:nth-child(2)::before{background:#B0634A}.ways>div:nth-child(3)::before{background:var(--indigo)}
+.ways>div:nth-child(4)::before{background:var(--amber)}.ways>div:nth-child(5)::before{background:#B0634A}.ways>div:nth-child(6)::before{background:var(--teal)}
+.ways{gap:16px}
+.feat{border:1px solid #D3D8D5;border-left:0;border-radius:12px;position:relative;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(120deg,#fff 60%,#E9EAE5)}
+.feat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--grad)}
+.badge{background:var(--teal-t)}
+.badge.plain{background:var(--indigo-t);color:var(--indigo)}
+.cur>div{box-shadow:var(--shadow)}
+.num b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.item{padding:22px 18px;margin:0 -18px;border-radius:8px;transition:background .2s}
+.item:hover{background:rgba(255,255,255,.75)}
+.pub{padding:16px 14px;margin:0 -14px;border-radius:8px}
+.pub:hover{background:#EBEBE7}
+.pub[data-k*="conf"] .kind:not(.hot){background:var(--indigo-t);color:var(--indigo)}
+.pub[data-k*="jour"] .kind{background:var(--teal-t);color:var(--teal-d)}
+.pub .kind.hot{background:var(--grad)}
+.pub.star{background:linear-gradient(90deg,rgba(76,108,114,.07),transparent 80%)}
+.filters button.on{background:var(--grad);border-color:transparent}
+.tl::before{background:linear-gradient(180deg,var(--teal),var(--indigo) 60%,var(--rule))}
+.job.now::before{background:var(--grad);border:0;width:14px;height:14px;left:-29px;box-shadow:0 0 0 4px rgba(76,108,114,.15)}
+.job::before{border-color:var(--indigo)}
+.edu div{border-top:3px solid transparent;border-image:var(--grad) 1}
+.dl dt{display:flex;align-items:center;gap:10px}
+.dl dt::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--teal);flex:none}
+.dl dt:nth-of-type(2n)::before{background:var(--indigo)}.dl dt:nth-of-type(3n)::before{background:var(--amber)}
+.projects>div{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.projects{gap:14px}
+.svc>div{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
+.svc{gap:16px}
+.big{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.shot.missing{background:linear-gradient(135deg,#E4E6E2,#E4E4E0);border:1px dashed #C2CAC9}
+.places>div{border-left:3px solid var(--teal);padding-left:12px}
+.places>div:nth-child(2){border-color:#B0634A}.places>div:nth-child(3){border-color:var(--indigo)}.places>div:nth-child(4){border-color:var(--amber)}
+.contact{background:var(--grad);color:#fff;position:relative;overflow:hidden}
+.contact::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 65%);pointer-events:none}
+.contact .side h2,.contact .lead-p,.contact .mail{color:#fff}
+.contact .mail{border-bottom:1px solid rgba(255,255,255,.5)}
+.contact .b{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);color:#fff}
+.contact .b:hover{background:#fff;color:var(--teal-d)}
+.contact .b.main{background:#fff;color:var(--teal-d)}
+footer{background:#1F2C32;color:#BCC0C2;border:0}
+@media(max-width:1000px){.fact{border-left:0!important}.fact:nth-child(3){border-top:3px solid var(--indigo)}.fact:nth-child(4){border-top:3px solid var(--amber)}}
+@media(max-width:620px){.fact b{font-size:1.3rem}.fact{padding:18px!important}}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:300;opacity:.045;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ===== CLASSIC CHROME BLEND ===== */
+:root{--grad:linear-gradient(120deg,#26363D 0%,#4C6C72 55%,#6E8C8C 100%);--warm:linear-gradient(90deg,#A5573F,#A66A28)}
+.hero{background:
+  radial-gradient(620px 380px at 100% 0%,rgba(201,139,62,.22),transparent 65%),
+  radial-gradient(520px 320px at 88% 18%,rgba(176,99,74,.14),transparent 60%),
+  radial-gradient(900px 460px at 0% -10%,rgba(76,108,114,.14),transparent 60%),#F5F3EE}
+.nav::before{background:linear-gradient(90deg,#26363D,#4C6C72 45%,#B0634A 75%,#C98B3E)}
+.hero h1{background:linear-gradient(120deg,#22292C 20%,#38555A 80%);-webkit-background-clip:text;background-clip:text}
+.fact:nth-child(1){border-top-color:#4C6C72}.fact:nth-child(2){border-top-color:#26363D}.fact:nth-child(3){border-top-color:#B0634A}.fact:nth-child(4){border-top-color:#C98B3E}
+.fact:nth-child(3) b,.fact:nth-child(4) b{background:var(--warm);-webkit-background-clip:text;background-clip:text}
+.side h2::after{background:var(--warm)}
+.contact .side h2::after{background:#C98B3E}
+.badge.amber{background:#F6E7D2;color:#7A4D16}
+.news li.key time{background:#F6E7D2;color:#7A4D16}
+.ways>div:nth-child(3)::before,.quick>div:nth-child(3){border-color:#B0634A}
+.ways>div:nth-child(3)::before{background:#B0634A}
+.filters button.on{background:#26363D}
+.pub .kind.hot{background:var(--warm)}
+.job.now::before{background:var(--warm);box-shadow:0 0 0 4px rgba(201,139,62,.2)}
+.num b{background:var(--warm);-webkit-background-clip:text;background-clip:text}
+.contact{background:linear-gradient(120deg,#1F2C32 0%,#2E454C 50%,#4C6C72 100%)}
+.contact::after{background:radial-gradient(circle,rgba(201,139,62,.35),transparent 65%);width:520px;height:520px;right:-140px;top:-180px}
+.contact .b.main{color:#26363D}
+.b.main,.cv{background:linear-gradient(120deg,#26363D,#4C6C72)}
+.dot.done{background:#C98B3E}
+.stg.flash{border-color:#C98B3E;box-shadow:0 0 0 4px rgba(201,139,62,.2)}
+.demo-head{background:linear-gradient(120deg,#EEF1EF,#F6EEE4)}
+.bin b{background:var(--warm);-webkit-background-clip:text;background-clip:text}
+/* portrait print */
+.print{position:absolute;top:-84px;right:26px;width:124px;padding:7px 7px 22px;background:#fff;box-shadow:0 14px 30px -14px rgba(34,41,44,.45);transform:rotate(4deg);z-index:5}
+.print .ph{position:relative;aspect-ratio:1;background:linear-gradient(140deg,#4C6C72,#26363D);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.print img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.05)}
+.print .ini{font-family:var(--serif);font-size:2.4rem;color:#F5F3EE}
+.print figcaption{position:absolute;left:0;right:0;bottom:4px;text-align:center;font-size:.7rem;color:#7a7a7a;font-family:var(--serif);font-style:italic}
+.demo{position:relative}
+@media(max-width:1000px){.print{top:-70px;right:18px;width:110px}.demo-head{padding-right:140px!important}}
+.demo-head{flex-direction:column;align-items:flex-start;gap:2px}
+
+.idrow{display:flex;align-items:center;gap:26px}
+.portrait{position:relative;flex:none;width:210px;height:262px;border-radius:14px;overflow:hidden;margin:0;background:linear-gradient(140deg,#4C6C72,#26363D);border:5px solid #fff;box-shadow:0 14px 30px -14px rgba(34,41,44,.45)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:1}
+.pph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#F5F3EE;opacity:.85}
+.pph small{font-size:.72rem;letter-spacing:.02em}
+.idrow h1{font-size:clamp(2.2rem,3.8vw,3.1rem)}
+.idrow .avail{margin-bottom:12px}
+@media(max-width:620px){.idrow{flex-direction:column;align-items:flex-start;gap:18px}.portrait{width:170px;height:212px;border-width:4px}}
+.pub.hide{display:none!important}
+.more{margin-top:14px;font:500 .9rem var(--sans);color:var(--teal-d);background:#fff;border:1px solid var(--rule);border-radius:20px;padding:8px 16px;cursor:pointer}
+.more:hover{border-color:var(--teal)}
+.hq{margin-top:18px}
+
+.hero-photo{width:300px;height:300px;justify-self:center;align-self:center;border-radius:50%;border:6px solid #fff;box-shadow:0 20px 50px -20px rgba(34,41,44,.45),0 0 0 1px var(--rule)}
+.hero h1{margin-top:4px}
+.demo-r{margin:18px 0 10px}
+.demo-r .track{max-width:640px;margin:0 auto}
+@media(max-width:1000px){.hero-photo{justify-self:start;order:-1;width:170px;height:170px;border-width:4px}}
+.more-j{margin-top:8px}.more-j .jl{margin-top:6px}
+.abd{display:inline-block;margin-left:6px;font-size:.82rem;font-weight:600;color:#fff;background:var(--teal-d);padding:3px 10px;border-radius:12px;vertical-align:2px;white-space:nowrap}
+
+.cover{position:relative;height:clamp(140px,18vw,240px);overflow:hidden;background:linear-gradient(120deg,#26363D 0%,#4C6C72 55%,#A5573F 85%,#C98B3E 100%)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;z-index:1;filter:saturate(.9)}
+.cover::after{content:none}
+.cover-ph{position:absolute;inset:0;display:flex;align-items:flex-start;padding-top:clamp(18px,5vw,70px)!important;justify-content:center;gap:10px;color:rgba(255,255,255,.8);font-size:.9rem;padding:0 20px;text-align:center}
+.cover + .hero{padding-top:48px}
+.cover + .hero .hero-photo{margin-top:0}
+
+.ao{font-size:.8rem;color:var(--faint);font-style:italic}
+
+/* ===== HERO REDESIGN: deep slate band ===== */
+.hero{background:radial-gradient(700px 420px at 92% 10%,rgba(201,139,62,.28),transparent 65%),radial-gradient(800px 500px at 0% 100%,rgba(76,108,114,.45),transparent 60%),linear-gradient(135deg,#1C282E 0%,#26363D 55%,#2F474E 100%)!important;color:#EEF1EF;padding:72px 0 120px!important}
+.hero::after{opacity:.35;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px)!important}
+.hero h1{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#fff!important;font-size:clamp(2.6rem,5vw,4.1rem)}
+.hero .who{color:#C9D2D2}.hero .who strong{color:#fff}
+.hero .pitch{color:#E3E8E6;font-size:1.1rem}
+.hero .abd{background:#C98B3E;color:#1C282E}
+.hero .avail{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#E3E8E6;box-shadow:none}
+.hero .b{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:#fff;box-shadow:none}
+.hero .b:hover{background:#fff;color:#26363D;border-color:#fff}
+.hero .b.main{background:#C98B3E!important;color:#1C282E;border-color:#C98B3E}
+.hero .b.main:hover{filter:brightness(1.08)}
+.hero-grid{grid-template-columns:1.25fr 1fr!important;gap:56px!important}
+.hero-photo{width:320px!important;height:400px!important;border-radius:14px!important;border:6px solid rgba(255,255,255,.95)!important;justify-self:end;align-self:center;overflow:visible!important;box-shadow:0 30px 60px -25px rgba(0,0,0,.6)!important}
+.hero-photo img{border-radius:8px}
+.hero-photo figcaption{position:absolute;left:0;right:0;bottom:-34px;text-align:center;font-size:.82rem;color:#B9C4C4}
+.hero-photo::before{content:"";position:absolute;inset:-18px 18px 18px -18px;border:2px solid rgba(201,139,62,.55);border-radius:16px;z-index:-1}
+.after-hero{position:relative;z-index:3;margin-top:-72px;padding-bottom:40px}
+.after-hero .facts{margin-top:0;box-shadow:0 24px 50px -28px rgba(20,30,35,.5)}
+@media(max-width:1000px){.hero-photo::before{display:none}.hero-photo figcaption{white-space:nowrap;left:50%;right:auto;transform:translateX(-50%);bottom:-28px}.hero{padding:44px 0 100px!important}.hero-photo{width:200px!important;height:250px!important;justify-self:start;margin-bottom:30px}.hero-grid{grid-template-columns:1fr!important;gap:28px!important}}
+.hero .advisor{margin:-8px 0 18px;color:#C9D2D2;font-size:.98rem}.hero .advisor a{color:#fff;text-decoration:underline;text-decoration-color:rgba(201,139,62,.8);text-underline-offset:3px}
+.code{font-style:normal;font-weight:600;color:var(--teal-d);overflow-wrap:anywhere}.code::before{content:"{ } ";font-family:ui-monospace,monospace;font-size:.85em;opacity:.7}
+.hero .interests{color:#C9D2D2;font-size:.95rem;line-height:1.6;margin:-10px 0 24px;max-width:36em}.hero .interests b{color:#fff;font-weight:600}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.shot img{transition:none}}
+@media print{.nav,.demo,.lb,#photography{display:none}.hero-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Ishrak Jahan Ratul</a>
+    <ul class="menu" id="menu">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#photography">Photography</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a class="cv" href="assets/Ishrak_Jahan_Ratul_CV.pdf" target="_blank">Download CV</a>
+      <button class="burger" aria-label="Open menu" onclick="menu.classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="avail"><i></i>Seeking Summer 2027 research internships</div>
+        <h1>Ishrak Jahan Ratul</h1>
+        <p class="who"><strong>Ph.D. candidate in Computer Science</strong> at Texas State University, San Marcos, Texas <span class="abd">All but dissertation (ABD)</span></p>
+        <p class="advisor">Advised by <a href="https://userweb.cs.txstate.edu/~k_y47/index.html" target="_blank">Dr. Kecheng Yang</a>, Associate Professor of Computer Science</p>
+        <p class="pitch">I make machine learning inference faster, more resource-efficient and more predictable in timing on GPUs, from embedded boards to HPC clusters. During my Ph.D.: 5 peer-reviewed papers, including IEEE RTSS 2026, the Journal of Systems Architecture and two IEEE COMPSAC papers, plus one paper under review.</p>
+        <p class="interests"><b>Research interests:</b> machine learning systems, inference optimization, parallel and GPU computing, high-performance computing, real-time systems.</p>
+        <div class="acts">
+          <a class="b main" href="assets/Ishrak_Jahan_Ratul_CV.pdf" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>Download CV</a>
+          <a class="b" href="mailto:ishrakratul@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>ishrakratul@gmail.com</a>
+          <a class="b" href="https://scholar.google.com/citations?user=9DuLZmEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+          <a class="b" href="https://www.linkedin.com/in/ishrakratul" target="_blank">LinkedIn</a>
+          <a class="b" href="https://github.com/ishrakratul" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <figure class="portrait hero-photo"><img src="assets/img/profile.jpg" alt="Ishrak Jahan Ratul" onerror="this.remove()"><span class="pph"><svg viewBox="0 0 64 64" width="80" height="80" fill="currentColor"><circle cx="32" cy="24" r="12"/><path d="M10 58c2-13 11-20 22-20s20 7 22 20z"/></svg><small>Your photo</small></span><figcaption>At IEEE COMPSAC 2025, Toronto</figcaption></figure>
+    </div>
+
+  </div>
+</section>
+<div class="after-hero"><div class="wrap">
+    <div class="facts">
+      <div class="fact lead"><b>ABD</b><span>All but dissertation: Ph.D. coursework and exams complete</span></div>
+      <div class="fact"><b>5 Ph.D. papers</b><span>Led by IEEE RTSS 2026, the premier real-time systems venue (artifact evaluated)</span></div>
+      <div class="fact"><b>~30% less energy</b><span>Early stopping of parallel cascades on RTX A4000 (under review)</span></div>
+      <div class="fact"><b>27% faster</b><span>Than a standalone Swin Transformer at nearly the same accuracy (JSA 2026)</span></div>
+    </div>
+    <div class="quick hq">
+        <div><h4>Looking for</h4><p>Summer 2027 research internships in ML systems and GPU inference performance; also open to HPC and real-time systems roles.</p></div>
+        <div><h4>Core tools</h4><p>C/C++, CUDA, Python, PyTorch, TensorRT, ONNX Runtime, TVM, Nsight, MPI, OpenMP, Slurm on TACC Lonestar6 and Frontera.</p></div>
+        <div><h4>Education</h4><p>Ph.D. in Computer Science, Texas State, all but dissertation (ABD). B.Sc. in EEE, Islamic University of Technology.</p></div>
+      </div>
+</div></div>
+
+<section class="sec alt" id="research">
+  <div class="wrap row">
+    <div class="side"><h2>Research</h2><p>Selected work with measured results</p></div>
+    <div>
+      <p class="lead-p" style="margin-bottom:18px">Cascades send easy inputs to a small, fast model and escalate only the hard ones. It is the same idea behind how LLM services route requests between small and large models, exit early, and decode speculatively, and my work studies how to make it fast, accurate and predictable on real GPUs.</p>
+      <p style="margin:-6px 0 18px;color:var(--sub);max-width:46em">The thread through my papers: running a cascade's classifiers <b>in parallel</b> buys latency (26–29% faster on average than sequential, with tighter worst-case decision times, COMPSAC 2026), and <b>stopping the losing branches early</b> recovers much of the energy that parallelism costs (~30% less than parallel). The RTSS 2026 paper explains when cascades can lose accuracy and how to design them so they do not.</p>
+      <div class="feat">
+        <span class="badge">Accepted at IEEE RTSS 2026</span>
+        <h3>Accuracy Anomalies in Classifier Cascades</h3>
+        <p>With Prof. Sanjoy Baruah and Dr. Kecheng Yang (alphabetical author order). We formally characterize the non-monotone accuracy–precision trade-off in multi-stage cascade pipelines, and identify and prove accuracy anomalies: a cascade can be less accurate than its own constituent classifiers, and raising the precision threshold can make it worse. We then give two accuracy-focused cascade-synthesis algorithms and evaluate them on Tiny ImageNet with six classifiers on an NVIDIA Jetson AGX Orin.</p><p style="margin-top:10px;font-size:.9rem"><span class="badge plain" style="margin:0">Artifact evaluated</span> <a class="code" href="https://github.com/ishrakratul/rtss2026-accuracy-anomalies" target="_blank">Code on GitHub</a> · <a class="code" href="https://doi.org/10.5281/zenodo.24243817" target="_blank">Trained models (Zenodo DOI)</a></p>
+      </div>
+      <figure class="demo demo-r" aria-label="Animated diagram of an IDK classifier cascade">
+        <div class="demo-head"><b>How an IDK cascade works</b><span><span id="total">0 inputs</span> · illustration</span></div>
+        <div class="track" id="track">
+          <div class="lane"></div>
+          <div class="stg" style="left:17%"><b>C₁</b><small>fast</small></div>
+          <div class="stg" style="left:50%"><b>C₂</b><small>larger</small></div>
+          <div class="stg" style="left:83%"><b>C₃</b><small>largest</small></div>
+          <div class="bin" style="left:17%"><b id="n0">0</b>answered</div>
+          <div class="bin" style="left:50%"><b id="n1">0</b>answered</div>
+          <div class="bin" style="left:83%"><b id="n2">0</b>answered</div>
+        </div>
+        <p>Each classifier answers the inputs it is confident about and says "I don't know" for the rest, passing them on. Most inputs finish early on the fast model, which is where the latency savings come from.</p>
+      </figure>
+      <ul class="items">
+        <li class="item"><div><h3>Accuracy-aware IDK cascades for real-time object classification</h3><p>Cascades built from fine-tuned classifiers on Tiny ImageNet, measured on a Jetson AGX Orin. The most accurate cascade is 27% faster than a standalone Swin Transformer (33.1 ms vs. 45.4 ms) at 89.35% vs. 89.56% accuracy. In a follow-up on ImageNet, running the cascade's classifiers concurrently on separate GPU streams cut average inference time by 26–29% compared with sequential cascades at the same accuracy, and tightened worst-case decision times.</p><div class="where">Journal of Systems Architecture 2026, IEEE COMPSAC 2025 and 2026</div></div><div class="num"><b>27%</b><span>faster than Swin Transformer alone</span></div></li>
+        <li class="item"><div><h3>Deep learning inference frameworks on Jetson AGX Orin</h3><p>A systematic comparison of PyTorch, ONNX Runtime, TensorRT, Apache TVM and JAX across CNN and Transformer workloads, measuring inference time, throughput, memory, power and accuracy. No single framework wins everywhere: TensorRT ran ResNet152 in 2.3 ms vs. 9.2 ms for PyTorch, yet PyTorch was faster on VGG16.</p><div class="where">Electronics 2025 · <a class="code" href="https://github.com/ishrakratul/DL-Inference-Framework-Benchmark" target="_blank">Code on GitHub</a></div></div><div class="num"><b>~4×</b><span>TensorRT vs. PyTorch on ResNet152</span></div></li>
+        <li class="item"><div><span class="badge amber">Under review</span><h3>Early stopping of speculative classifier cascades on GPUs</h3><p>When several IDK cascades race on one GPU, the losing branches keep using GPU time after a winner has answered. Stopping those branches early cut energy per request by about 30% compared with parallel execution, with under 0.3 points of accuracy loss, on an NVIDIA RTX A4000; also evaluated on Jetson Orin, with the artifact released.</p><div class="where">PyTorch, CUDA streams, Nsight Systems</div></div><div class="num"><b>~30%</b><span>less energy per request vs. parallel execution</span></div></li>
+        <li class="item"><div><h3>Earlier work: machine learning for health</h3><p>Co-developed Bangladesh's interactive national COVID-19 digital surveillance system, and built classifiers for heart failure, pediatric HSCT survival and cervical cancer risk.</p><div class="where">Frontiers in Digital Health 2023, plus four health-ML papers (2022–2023)</div><div class="where" style="margin-top:6px"><a class="code" href="https://github.com/ishrakratul/Bone-Marrow-Transplant-Survival-Prediction-Machine-Learning" target="_blank">HSCT survival code</a> · <a class="code" href="https://github.com/ishrakratul/Heart-Failure-Prediction-Machine-Learning" target="_blank">Heart failure code</a> · <a class="code" href="https://github.com/ishrakratul/Covid-19-Stress-Analysis-In-Undergraduate-Students" target="_blank">Student stress code</a></div></div><div class="num"><b>1.98M</b><span>COVID-19 screenings by Dec 2022</span></div></li>
+      </ul>
+      <div class="cur">
+        <div><span class="badge amber">Current focus</span><h3>Parallel speculative decoding for LLM inference</h3><p>Developing parallel speculative decoding for transformer LLM inference on a shared GPU, running the draft and verifier models concurrently to lower decode latency.</p></div>
+        <div><span class="badge plain">Coursework projects</span><h3>Advanced parallel computing</h3><p>CUDA and OpenMP implementations of connected components, radix sort, counting sort and single-source shortest paths, plus roofline analysis of the CUDA execution model and memory hierarchy.</p><p style="margin-top:8px"> <a class="code" href="https://github.com/ishrakratul/HPC-Scale-CS7389D-" target="_blank">HPC at scale (Pthreads, OpenMP, MPI, CUDA)</a> · <a class="code" href="https://github.com/ishrakratul/HPC-CS7331-" target="_blank">LLVM analysis and optimization passes</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="experience">
+  <div class="wrap row">
+    <div class="side"><h2>Experience</h2></div>
+    <div>
+      <div class="tl">
+        <div class="job now">
+          <div class="top"><h3>Graduate Research Assistant</h3><span class="when">Aug 2023 – present</span></div>
+          <div class="org">Texas State University, San Marcos, TX. Advisor: <a href="https://userweb.cs.txstate.edu/~k_y47/index.html" target="_blank">Dr. Kecheng Yang</a></div>
+          <ul>
+            <li>Proved accuracy anomalies in classifier cascades and designed deadline-aware cascade synthesis (IEEE RTSS 2026, with Prof. Sanjoy Baruah; alphabetical author order); artifact evaluated.</li>
+            <li>Built IDK cascades 27% faster than a standalone Swin Transformer, and parallel GPU-stream cascades 26–29% faster than sequential (JSA 2026, COMPSAC 2025 and 2026).</li>
+            <li>Cut energy per request ~30% by stopping losing cascade branches early on RTX A4000 and Jetson Orin.</li>
+            <li>Benchmarked five inference frameworks on Jetson AGX Orin; TensorRT ~4× faster than PyTorch on ResNet152 (Electronics 2025).</li>
+            <li><i>In progress:</i> parallel speculative decoding for LLM inference on a shared GPU.</li>
+            
+          </ul>
+        </div>
+        <div class="job now">
+          <div class="top"><h3>Doctoral Instructional Assistant</h3><span class="when">Aug 2023 – present</span></div>
+          <div class="org">Department of Computer Science, Texas State University</div>
+          <ul><li>CS 3360, Computing System Fundamentals: supported lectures, graded assessments and exams, held office hours and helped students.</li></ul>
+        </div>
+        <div class="job">
+          <div class="top"><h3>Research Engineer</h3><span class="when">Aug 2022 – Apr 2023</span></div>
+          <div class="org">AIMS Lab, United International University, Dhaka. Supervisor: Dr. Khondaker A. Mamun</div>
+          <ul>
+            <li>Co-developed a national digital health surveillance system for COVID-19 in Bangladesh (Frontiers in Digital Health 2023).</li>
+            
+          </ul>
+        </div>
+        <div class="job">
+          <div class="top"><h3>Undergraduate Researcher</h3><span class="when">Jan 2021 – May 2022</span></div>
+          <div class="org">Islamic University of Technology, Gazipur. Advisor: Md. Mirza Muntasir Nishat</div>
+          <ul><li>Built classifiers for heart failure, pediatric HSCT survival and cervical cancer prediction; the HSCT model kept <b>94.73% accuracy</b> using only 11 of 59 features.</li></ul>
+        </div>
+      </div>
+
+      <h3 class="sub-h">Education</h3>
+      <div class="edu" style="margin-top:16px">
+        <div><span class="st">All but dissertation (ABD)</span><h3>Ph.D. in Computer Science</h3><p>Texas State University, San Marcos, TX. Advisor: <a href="https://userweb.cs.txstate.edu/~k_y47/index.html" target="_blank">Dr. Kecheng Yang</a>.</p></div>
+        <div><span class="st">Completed</span><h3>B.Sc. in Electrical and Electronic Engineering</h3><p>Islamic University of Technology (IUT-OIC), Bangladesh. Thesis in biomedical machine learning.</p></div>
+      </div>
+      <p style="margin-top:22px;font-size:.93rem;color:var(--sub)"><b style="color:var(--ink);font-weight:600">Teaching interests:</b> computer architecture, parallel and GPU computing, operating systems, real-time systems, machine learning, deep learning, data structures and algorithms.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="skills">
+  <div class="wrap row">
+    <div class="side"><h2>Skills</h2></div>
+    <div>
+      <dl class="dl">
+        <dt>Languages</dt><dd>C/C++, CUDA C/C++, Python, MATLAB, SQL, Bash</dd>
+        <dt>ML and inference</dt><dd>PyTorch, TensorFlow, JAX, ONNX Runtime, TensorRT, Apache TVM, scikit-learn</dd>
+        <dt>Parallel and GPU</dt><dd>CUDA, MPI, OpenMP, Pthreads, HIP, multi-GPU, hybrid MPI + threads + GPU programming</dd>
+        <dt>Performance</dt><dd>Nsight Compute, Nsight Systems, perf; occupancy, memory-behavior and atomics tuning; speedup and efficiency analysis</dd>
+        <dt>HPC and systems</dt><dd>TACC supercomputers (Lonestar6, Frontera), Slurm, Linux, Git, HPC cluster workflows; graph analytics (BFS/SSSP), partitioning and load balancing</dd>
+        <dt>Hardware</dt><dd>NVIDIA Jetson AGX Orin, NVIDIA discrete GPUs, 8051 and Arduino microcontrollers</dd>
+        <dt>Other tools</dt><dd>LaTeX, Jupyter, matplotlib</dd>
+      </dl>
+      <p style="margin-top:22px;font-size:.93rem;color:var(--sub)"><b style="color:var(--ink);font-weight:600">Earlier engineering projects:</b> IoT health monitoring, CNN emotion recognition, ant colony optimization, 8051 embedded systems, a PCB-built digital calculator and Arduino robotics.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="publications">
+  <div class="wrap row">
+    <div class="side"><h2>Publications</h2><p>10 peer-reviewed papers: 5 during the Ph.D. (2025–2026), 5 earlier<br><a href="https://scholar.google.com/citations?user=9DuLZmEAAAAJ&hl=en" target="_blank">Google Scholar profile</a></p></div>
+    <div>
+      <div class="filters" role="group" aria-label="Filter publications">
+        <button class="on" aria-pressed="true" data-f="all">All 10</button>
+        <button aria-pressed="false" data-f="conf">Conference 4</button>
+        <button aria-pressed="false" data-f="jour">Journal 6</button>
+        <button aria-pressed="false" data-f="sys">Systems and ML 6</button>
+        <button aria-pressed="false" data-f="health">Health ML 4</button>
+      </div>
+      <div id="pubs">
+      <div class="pub star" data-k="conf sys"><div class="yr">2026</div><div><h4>Accuracy Anomalies in Classifier Cascades</h4><div class="au">S. Baruah, <b>I. J. Ratul</b>, and K. Yang <span class="ao">(alphabetical author order)</span></div><div class="ve">47th IEEE Real-Time Systems Symposium (RTSS), 2026 — accepted · <a class="code" href="https://github.com/ishrakratul/rtss2026-accuracy-anomalies" target="_blank">Code</a> · <a class="code" href="https://doi.org/10.5281/zenodo.24243817" target="_blank">Models (DOI)</a></div><details><summary>Summary</summary><p>Shows that the overall accuracy of an IDK cascade can fall below that of its own constituent classifiers, and can get worse even as the precision threshold is raised. Proposes two accuracy-focused cascade-synthesis algorithms (maximum accuracy under a deadline; minimum expected time under accuracy and deadline constraints), evaluated on Tiny ImageNet with six classifiers on an NVIDIA Jetson AGX Orin. The research artifact passed artifact evaluation.</p></details></div><span class="kind hot">RTSS · Conf</span></div>
+      <div class="pub" data-k="jour sys"><div class="yr">2026</div><div><h4><a href="https://doi.org/10.1016/j.sysarc.2026.103753" target="_blank">Accuracy-Aware IDK Cascades for Real-Time Object Classification at the Edge</a></h4><div class="au"><b>I. J. Ratul</b>, Z. Guo, and K. Yang</div><div class="ve">Journal of Systems Architecture, vol. 175, 103753, 2026</div><details><summary>Summary</summary><p>Composes IDK classifier cascades from fine-tuned existing models and evaluates them on Tiny ImageNet and CIFAR-100. On Tiny ImageNet, the most accurate cascade reaches 89.35% top-1 accuracy in 33.1 ms on average, 27% faster than a standalone Swin Transformer (89.56%, 45.4 ms).</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub" data-k="conf sys"><div class="yr">2026</div><div><h4><a href="https://doi.org/10.1109/COMPSAC69091.2026.00197" target="_blank">Fast and Accurate Classification with Parallel IDK Classifier Cascades</a></h4><div class="au"><b>I. J. Ratul</b> and K. Yang</div><div class="ve">IEEE 50th Annual Computers, Software, and Applications Conference (COMPSAC), 2026</div><details><summary>Summary</summary><p>Runs the classifiers of an IDK cascade concurrently on separate GPU streams, with a greedy threshold-lowering method that favors earlier acceptance. On ImageNet with an NVIDIA Jetson AGX Orin, it cuts average inference time by 26–29% compared with sequential cascades at the same accuracy, and tightens worst-case decision times. Presented at COMPSAC 2026 in Madrid.</p></details></div><span class="kind">Conference</span></div>
+      <div class="pub" data-k="jour sys"><div class="yr">2025</div><div><h4><a href="https://doi.org/10.3390/electronics14152977" target="_blank">Accelerating Deep Learning Inference: A Comparative Analysis of Modern Acceleration Frameworks</a></h4><div class="au"><b>I. J. Ratul</b>, Y. Zhou, and K. Yang</div><div class="ve">Electronics, vol. 14, no. 15, 2977, 2025 · <a class="code" href="https://github.com/ishrakratul/DL-Inference-Framework-Benchmark" target="_blank">Code</a></div><details><summary>Summary</summary><p>Compares PyTorch, ONNX Runtime, TensorRT, Apache TVM and JAX on an NVIDIA Jetson AGX Orin across inference time, throughput, memory, power and accuracy. Framework choice depends on the model: TensorRT ran ResNet152 about 4× faster than PyTorch, while PyTorch was faster on VGG16.</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub" data-k="conf sys"><div class="yr">2025</div><div><h4><a href="https://doi.org/10.1109/COMPSAC65507.2025.00194" target="_blank">Cascading IDK Classifiers to Accelerate Object Recognition While Preserving Accuracy</a></h4><div class="au"><b>I. J. Ratul</b>, Z. Guo, and K. Yang</div><div class="ve">IEEE 49th Annual Computers, Software, and Applications Conference (COMPSAC), 2025</div><details><summary>Summary</summary><p>Builds IDK cascades on Tiny ImageNet that run models from fastest to most accurate and stop as soon as one is confident. On a Jetson AGX Orin, the fastest cascade is 2.57× faster than a standalone Swin Transformer, and the most accurate is 27% faster at nearly the same accuracy. Presented at COMPSAC 2025 in Toronto.</p></details></div><span class="kind">Conference</span></div>
+      <div class="pub older" data-k="jour health"><div class="yr">2023</div><div><h4><a href="https://doi.org/10.1016/j.heliyon.2023.e17307" target="_blank">Analyzing Perceived Psychological and Social Stress of University Students: A Machine Learning Approach</a></h4><div class="au"><b>I. J. Ratul</b>, M. M. Nishat, F. Faisal, S. Sultana, A. Ahmed, and M. A. Mamun</div><div class="ve">Heliyon, vol. 9, no. 6, e17307, 2023 · <a class="code" href="https://github.com/ishrakratul/Covid-19-Stress-Analysis-In-Undergraduate-Students" target="_blank">Code</a></div><details><summary>Summary</summary><p>Surveys 444 university students and builds supervised models to predict perceived stress, using PCA and the chi-squared test for feature reduction and grid search and a genetic algorithm for hyperparameter tuning. A multilayer perceptron with PCA and grid search was most accurate; about 24% of students showed extremely high psychological stress.</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub older" data-k="jour sys"><div class="yr">2023</div><div><h4><a href="https://doi.org/10.3389/fdgth.2023.1059446" target="_blank">An Interactive National Digital Surveillance System to Fight COVID-19 in Bangladesh</a></h4><div class="au">F. Sarker, M. H. Chowdhury, <b>I. J. Ratul</b>, S. Islam, and K. A. Mamun</div><div class="ve">Frontiers in Digital Health, vol. 5, 1059446, 2023</div><details><summary>Summary</summary><p>Describes Bangladesh's nationwide COVID-19 surveillance system: a mobile app and cloud server used by community health workers, with rule-based AI that sorts people into five risk groups and refers them to care. It completed 1,980,323 screenings between April 2020 and December 2022.</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub older" data-k="jour health"><div class="yr">2022</div><div><h4><a href="https://doi.org/10.1155/2022/9391136" target="_blank">Survival Prediction of Children Undergoing Hematopoietic Stem Cell Transplantation Using Different Machine Learning Classifiers by Performing Chi-Square Test and Hyperparameter Optimization: A Retrospective Analysis</a></h4><div class="au"><b>I. J. Ratul</b>, U. H. Wani, M. M. Nishat, et al.</div><div class="ve">Computational and Mathematical Methods in Medicine, 9391136, 2022 · <a class="code" href="https://github.com/ishrakratul/Bone-Marrow-Transplant-Survival-Prediction-Machine-Learning" target="_blank">Code</a></div><details><summary>Summary</summary><p>Predicts survival of children after bone marrow (HSCT) transplantation on a public dataset. Using chi-square selection to keep only the top 11 of 59 features, plus grid-search hyperparameter tuning, matched the 94.73% accuracy of the full dataset with less time and resources.</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub older" data-k="jour health"><div class="yr">2022</div><div><h4><a href="https://doi.org/10.1155/2022/3649406" target="_blank">A Comprehensive Investigation of the Performances of Different Machine Learning Classifiers with SMOTE-ENN Oversampling Technique and Hyperparameter Optimization for Imbalanced Heart Failure Dataset</a></h4><div class="au">M. M. Nishat, F. Faisal, <b>I. J. Ratul</b>, et al.</div><div class="ve">Scientific Programming, 3649406, 2022 · <a class="code" href="https://github.com/ishrakratul/Heart-Failure-Prediction-Machine-Learning" target="_blank">Code</a></div><details><summary>Summary</summary><p>Compares six classifiers for predicting heart-failure survival on a 299-patient UCI dataset, with data scaling, hyperparameter search and SMOTE-ENN resampling. Random Forest with SMOTE-ENN and standard scaling reached the best test accuracy, 90%.</p></details></div><span class="kind">Journal</span></div>
+      <div class="pub older" data-k="conf health"><div class="yr">2022</div><div><h4><a href="https://doi.org/10.1109/ECTI-CON54298.2022.9795429" target="_blank">Early Risk Prediction of Cervical Cancer: A Machine Learning Approach</a></h4><div class="au"><b>I. J. Ratul</b>, A. Al-Monsur, B. Tabassum, et al.</div><div class="ve">19th Int'l Conf. on Electrical Engineering/Electronics, Computer, Telecommunications and IT (ECTI-CON), 2022</div><details><summary>Summary</summary><p>Machine learning models for early risk prediction of cervical cancer from patient risk-factor data.</p></details></div><span class="kind">Conference</span></div>
+    </div>
+      <button class="more" id="morePubs" aria-expanded="false">Show 5 earlier papers (2022–2023)</button>
+      <div class="talks">
+        <h3>Presentations and talks</h3>
+        <ul>
+          <li><b>"Fast and Accurate Classification with Parallel IDK Classifier Cascades,"</b> IEEE COMPSAC 2026, Madrid, Spain (July 2026)</li>
+          <li><b>"Cascading IDK Classifiers to Accelerate Object Recognition While Preserving Accuracy,"</b> IEEE COMPSAC 2025, Toronto, Canada (July 2025)</li>
+          <li><b>"Fast and Accurate Classification with Parallel IDK Classifier Cascades,"</b> poster, MVAPICH User Group (MUG) Conference, August 2026, supported by a MUG travel grant</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="news">
+  <div class="wrap row">
+    <div class="side"><h2>News</h2><p>Recent milestones</p></div>
+    <div>
+      <ul class="news">
+        <li><time>Oct 2026</time><span>Submitted a paper on early stopping of parallel classifier cascades on GPUs, with the artifact released.</span></li>
+        <li class="key"><time>Sep 2026</time><span>RTSS 2026 research artifact accepted in artifact evaluation.</span></li>
+        <li><time>Aug 2026</time><span>Presented the poster "Fast and Accurate Classification with Parallel IDK Classifier Cascades" at the MVAPICH User Group (MUG) Conference, supported by a MUG travel grant.</span></li>
+        <li class="key"><time>Jul 2026</time><span>"Accuracy Anomalies in Classifier Cascades" accepted at IEEE RTSS 2026, with Prof. Sanjoy Baruah and Dr. Kecheng Yang.</span></li>
+        <li><time>Jul 2026</time><span>Presented "Fast and Accurate Classification with Parallel IDK Classifier Cascades" at IEEE COMPSAC 2026 in Madrid.</span></li>
+        <li><time>Jul 2025</time><span>Presented "Cascading IDK Classifiers to Accelerate Object Recognition While Preserving Accuracy" at IEEE COMPSAC 2025 in Toronto, Canada.</span></li>
+        <li><time>Aug 2023</time><span>Started the Ph.D. at Texas State University with the Spoonamore Doctoral Merit Fellowship.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="service">
+  <div class="wrap row">
+    <div class="side"><h2>Service and honors</h2></div>
+    <div class="svc">
+      <div><h3>Peer review</h3><div class="big">24</div><p style="font-size:.92rem;color:var(--sub)">completed reviews for 17 journals</p>
+        <ul class="jl"><li>BMC Medical Informatics and Decision Making<span>4</span></li><li>IEEE Transactions on Services Computing<span>3</span></li><li>Applied Computational Intelligence and Soft Computing<span>2</span></li><li>Scientific Reports<span>2</span></li></ul><details class="more-j"><summary>13 more journals</summary><ul class="jl"><li>Applied AI Letters<span>1</span></li><li>BMC Medical Research Methodology<span>1</span></li><li>Case Reports in Pediatrics<span>1</span></li><li>Concurrency and Computation: Practice and Experience<span>1</span></li><li>Discover Artificial Intelligence<span>1</span></li><li>Discover Mental Health<span>1</span></li><li>Discover Toxicology<span>1</span></li><li>Discrete Dynamics in Nature and Society<span>1</span></li><li>Engineering Reports<span>1</span></li><li>Innovations in Systems and Software Engineering<span>1</span></li><li>Int'l Journal of Telemedicine and Applications<span>1</span></li><li>Journal of Engineering<span>1</span></li><li>Signal, Image and Video Processing<span>1</span></li></ul></details></div>
+      <div><h3>Awards and fellowships</h3><ul class="plain">
+        <li><b>Spoonamore Doctoral Merit Fellowship</b>Texas State University, 2023</li>
+        <li><b>Travel Grant</b>MVAPICH User Group (MUG) Conference, 2026</li></ul></div>
+      <div><h3>Memberships</h3><ul class="plain">
+        <li><b>IEEE</b>Graduate student member</li>
+        <li><b>IEEE Computer Society</b>Graduate student member</li>
+        <li><b>ACM</b>Graduate student member</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="photography">
+  <div class="wrap row">
+    <div class="side"><h2>Photography and travel</h2><p>Roam with Ratul</p></div>
+    <div>
+      <p class="lead-p" style="margin-bottom:6px">I photograph streets on Fujifilm. Profiling a GPU kernel and waiting for a frame to line up take the same patience.</p>
+      <p class="social" style="font-size:.93rem;color:var(--sub)"></p>
+      <div class="gallery" id="gallery"></div>
+      <div class="places">
+        <div><b>Bangladesh</b><span>Dhaka and Gazipur, where I started shooting</span></div>
+        <div><b>Texas</b><span>Austin and San Marcos, my home base</span></div>
+        <div><b>Conference cities</b><span>Each conference trip doubles as a photo walk</span></div>
+        <div><b>Europe and Canada</b><span>Paris, Madrid, Lucerne, the Swiss Alps and Niagara</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="wrap row">
+    <div class="side"><h2>Contact</h2></div>
+    <div>
+      <p class="lead-p" style="margin-bottom:4px">If your team works on fast, accurate and predictable inference, I'd like to hear from you.</p>
+      <a class="mail" href="mailto:ishrakratul@gmail.com">ishrakratul@gmail.com</a>
+      <p style="margin:8px 0 0;font-size:.92rem;color:#C9D2D2">University: <a style="color:#fff;text-decoration:underline" href="mailto:ishrakratul@txstate.edu">ishrakratul@txstate.edu</a></p>
+      <div class="acts">
+        <a class="b main" href="assets/Ishrak_Jahan_Ratul_CV.pdf" target="_blank">Download CV</a>
+        <a class="b" href="https://scholar.google.com/citations?user=9DuLZmEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        <a class="b" href="https://www.linkedin.com/in/ishrakratul" target="_blank">LinkedIn</a>
+        <a class="b" href="https://github.com/ishrakratul" target="_blank">GitHub</a>
+        <a class="b" href="https://www.researchgate.net/profile/Ishrak-Ratul" target="_blank">ResearchGate</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Ishrak Jahan Ratul</span><span>San Marcos, Texas</span></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Photo viewer">
+  <button class="x" aria-label="Close">✕</button><button class="pv" aria-label="Previous photo">←</button>
+  <img id="lbimg" alt=""><div class="cap" id="lbcap"></div>
+  <button class="nx" aria-label="Next photo">→</button>
+</div>
+
+<script>
+/* ===== YOUR PHOTOS: put files in assets/photos/ and edit this list ===== */
+const PHOTOS = [
+  {src:"assets/photos/01.jpg", caption:"Eiffel Tower and the Seine, Paris", tall:true},
+  {src:"assets/photos/02.jpg", caption:"Chapel Bridge, Lucerne"},
+  {src:"assets/photos/06.jpg", caption:"Behind Horseshoe Falls, Niagara", tall:true},
+  {src:"assets/photos/04.jpg", caption:"Above the valley, Swiss Alps"},
+  {src:"assets/photos/03.jpg", caption:"Pennybacker Bridge, Austin"},
+  {src:"assets/photos/05.jpg", caption:"Night facade, Madrid"},
+  {src:"assets/photos/07.jpg", caption:"First Cliff Walk, Grindelwald"},
+];
+/* Set to true before sharing the site: any photo slot still empty
+   (cover, portrait, gallery) is hidden instead of showing a placeholder. */
+const HIDE_EMPTY_PHOTOS = false;
+/* Roam with Ratul links; leave "" to hide */
+const SOCIAL = { Instagram:"", YouTube:"" };
+
+yr.textContent = new Date().getFullYear();
+
+/* social line */
+const soc = Object.entries(SOCIAL).filter(([,u])=>u).map(([n,u])=>`<a href="${u}" target="_blank">${n}</a>`);
+if (soc.length) document.querySelector('.social').innerHTML = 'Follow Roam with Ratul on ' + soc.join(' and ') + '.';
+
+/* gallery */
+const g = document.getElementById('gallery');
+PHOTOS.forEach((p,i)=>{
+  const f = document.createElement('figure'); f.className='shot'+(p.tall?' tall':'');
+  f.innerHTML = `<img src="${p.src}" alt="${p.caption}"><figcaption>${p.caption}</figcaption>`;
+  f.querySelector('img').onerror = ()=>{ f.className='shot missing'; f.innerHTML=`<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Sample photo ${i+1}</span><small>${p.caption}</small>`; };
+  f.onclick = ()=>{ if(!f.classList.contains('missing')) openLb(i); };
+  g.appendChild(f);
+});
+let cur=0;
+function openLb(i){cur=i;lbimg.src=PHOTOS[i].src;lbimg.alt=PHOTOS[i].caption;lbcap.textContent=PHOTOS[i].caption;lb.classList.add('open');lb.querySelector('.x').focus()}
+function step(k){const ok=[...g.children].map((e,i)=>e.classList.contains('missing')?-1:i).filter(i=>i>=0);if(ok.length)openLb(ok[(ok.indexOf(cur)+k+ok.length)%ok.length])}
+lb.querySelector('.x').onclick=()=>lb.classList.remove('open');
+lb.querySelector('.pv').onclick=()=>step(-1); lb.querySelector('.nx').onclick=()=>step(1);
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
+
+
+/* collapse earlier publications */
+const morePubs=document.getElementById('morePubs');
+function setOlder(show){document.querySelectorAll('.pub.older').forEach(p=>p.classList.toggle('hide',!show));morePubs.setAttribute('aria-expanded',show);morePubs.textContent=show?'Show fewer':'Show 5 earlier papers (2022–2023)';}
+setOlder(false); morePubs.onclick=()=>setOlder(morePubs.getAttribute('aria-expanded')!=='true');
+
+/* hide empty photo slots when HIDE_EMPTY_PHOTOS is on */
+if (HIDE_EMPTY_PHOTOS) setTimeout(()=>{
+  const cov=document.querySelector('.cover'); if(cov && !cov.querySelector('img')) cov.remove();
+  const por=document.querySelector('.hero-photo'); if(por && !por.querySelector('img')) por.remove();
+  document.querySelectorAll('.shot.missing').forEach(f=>f.remove());
+  if(!g.children.length) g.remove();
+},1200);
+
+/* publication filters */
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.filters button').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false')}); b.classList.add('on'); b.setAttribute('aria-pressed','true');
+  document.querySelectorAll('.pub').forEach(p=>p.style.display=(b.dataset.f==='all'||p.dataset.k.includes(b.dataset.f))?'':'none'); if(b.dataset.f==='all'){setOlder(false);morePubs.style.display='';} else {document.querySelectorAll('.pub.older').forEach(p=>p.classList.remove('hide'));morePubs.style.display='none';}
+});
+
+/* active menu link */
+const secs=[...document.querySelectorAll('section[id]')], links=[...document.querySelectorAll('.menu a')];
+addEventListener('scroll',()=>{let id='';secs.forEach(s=>{if(scrollY>=s.offsetTop-90)id=s.id});
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id))},{passive:true});
+links.forEach(l=>l.onclick=()=>menu.classList.remove('open'));
+
+/* IDK cascade animation */
+(function(){
+  const track=document.getElementById('track'), stg=[...track.querySelectorAll('.stg')];
+  const xs=[.17,.50,.83], pass=[.62,.70], counts=[0,0,0]; let total=0;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(){ counts.forEach((c,i)=>document.getElementById('n'+i).textContent=c); document.getElementById('total').textContent=total+(total===1?' input':' inputs'); }
+  if(reduce){ counts.splice(0,3,62,26,12); total=100; show(); return; }
+  function launch(){
+    const W=track.clientWidth, d=document.createElement('div'); d.className='dot'; track.appendChild(d);
+    let k=0; while(k<2 && Math.random()>pass[k]) k++;            // stage where this input is answered
+    const frames=[{transform:'translate(0,0)'}];
+    for(let i=0;i<=k;i++) frames.push({transform:`translate(${xs[i]*W-5}px,0)`});
+    frames.push({transform:`translate(${xs[k]*W-5}px,62px)`,opacity:.9});
+    const dur=700+k*650;
+    const a=d.animate(frames,{duration:dur+500,easing:'ease-in-out'});
+    setTimeout(()=>{d.classList.add('done');stg[k].classList.add('flash');setTimeout(()=>stg[k].classList.remove('flash'),250)},dur*(k+1)/(k+2)+150);
+    a.onfinish=()=>{d.remove();counts[k]++;total++;show();if(total>=60){clearInterval(timer);timer='done';}};
+  }
+  let timer=null;
+  const io=new IntersectionObserver(([e])=>{ if(timer==='done')return; if(e.isIntersecting){ if(!timer){launch();timer=setInterval(launch,650);} } else { clearInterval(timer);timer=null; } });
+  io.observe(track);
+})();
+</script>
+</body>
+</html>
